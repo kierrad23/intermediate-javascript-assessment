@@ -12,9 +12,11 @@
 // with the animal as the context, and 'Trogdor' as a parameter.
 // return the result of your updateAnimal invocation
 
-// CODE HERE...
-
-
+function callBinding(magicAnimals, updateAnimal, id) {
+  var animal = magicAnimals.find((e, i) => i == id);
+  updateAnimal = updateAnimal.bind(this.animal);
+  return updateAnimal("Trogdor");
+}
 
 // *************
 // * PROBLEM 2 *
@@ -27,9 +29,11 @@
 // with the context of the animal, and the array ['being majestic', 'eating rainbows'] as a parameter.
 // return the result of your updateAnimal invocation
 
-// CODE HERE...
-
-
+function applyBinding(magicAnimals, updateAnimal, id) {
+  var animal = magicAnimals.find((e, i) => i == id);
+  updateAnimal = updateAnimal.bind(animal);
+  return updateAnimal(["being majestic", "eating rainbows"]);
+}
 
 // *************
 // * PROBLEM 3 *
@@ -47,9 +51,7 @@
 
 var foo;
 
-// CODE HERE...
-
-
+function promiseMe($q) {}
 
 // *************
 // * PROBLEM 4 *
@@ -63,4 +65,6 @@ var foo;
 // Make an array of emails (array of strings) from the returned data (You will need to console log or debug to figure this out),
 // and then resolve the array as you complete your promise.
 
-// CODE HERE...
+function emailList($q, $http) {
+  $http("/api/users", $q).then(res => console.log(res));
+}
