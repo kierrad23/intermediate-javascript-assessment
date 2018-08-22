@@ -30,9 +30,8 @@ function callBinding(magicAnimals, updateAnimal, id) {
 // return the result of your updateAnimal invocation
 
 function applyBinding(magicAnimals, updateAnimal, id) {
-  var animal = magicAnimals.find((e, i) => i == id);
-  updateAnimal = updateAnimal.bind(animal);
-  return updateAnimal(["being majestic", "eating rainbows"]);
+  var animal = magicAnimals.find((e, i) => e.id === id);
+  return updateAnimal.apply(animal, ["being majestic", "eating rainbows"]);
 }
 
 // *************
@@ -51,7 +50,9 @@ function applyBinding(magicAnimals, updateAnimal, id) {
 
 var foo;
 
-function promiseMe($q) {}
+function promiseMe($q) {
+  return new Promise((res, rej) => setTimeout(() => res((foo = "bar"))), 20);
+}
 
 // *************
 // * PROBLEM 4 *
@@ -66,5 +67,9 @@ function promiseMe($q) {}
 // and then resolve the array as you complete your promise.
 
 function emailList($q, $http) {
-  $http("/api/users", $q).then(res => console.log(res));
+  // var arr = [];
+  return $http({
+    method: "GET",
+    url: "/api/users"
+  }).then(res => res.data.map(e => e.email));
 }

@@ -110,24 +110,12 @@ mustang.drive();
 // Your method may be passed punctuation, numbers or other non-letter characters
 // and should neither modify them nor break when encountering them.
 
-String.prototype.grammarPolice = function(str) {
+String.prototype.grammarPolice = function() {
   var pass = /[a-z]/gi;
-  if (str.search(pass) !== -1) {
-    function replace() {
-      var a = this.split("");
-      a[index] = char;
-      a.join("");
-    }
-    function change(str) {
-      str = str.toLowerCase();
-      var arr = str.split(" ");
-      let emptyarr = [];
-      for (i = 0; i < arr.length; i++) {
-        arr[i] = arr[i].replace(0, arr[i][0].toUpperCase());
-      }
-    }
-    return arr.join(" ");
-  }
+  // if (str.search(pass) !== -1) {
+  return this.split(" ")
+    .map(e => e[0].toUpperCase() + e.toLowerCase().slice(1))
+    .join(" ");
 };
 
 // String.prototype.replaceAt = function(index, char) {};

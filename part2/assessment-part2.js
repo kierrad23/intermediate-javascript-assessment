@@ -41,15 +41,15 @@ function noWeakLink() {
   return $http({
     method: "GET",
     url: "/api/users"
-  });
-  // .then(function(res) {
-  //   firstUser = res.data[0];
-  //   return res.data;
-  // })
-  // .then(function(res) {
-  //   thirdUser = res.data[2];
-  //   return res.data[9];
-  // });
+  })
+    .then(res => {
+      firstUser = res.data[0];
+      return res;
+    })
+    .then(function(res) {
+      thirdUser = res.data[2];
+      return res.data[9];
+    });
   // CODE HERE...
 }
 
@@ -132,12 +132,12 @@ function accountingOffice(assets) {
 // };
 
 function forgetter(name) {
+  let arr = [];
   return function rememberall(item) {
-    let emptyarr = [];
-    emptyarr.push(item);
+    arr.push(item);
     return {
       name,
-      remember: emptyarr
+      remember: arr
     };
   };
 }
